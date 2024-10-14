@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.koomi</groupId>
-    <artifactId>treading-platfrom</artifactId>
+    <artifactId>trading-platfrom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>treading-platfrom</name>
     <description>treading-platfrom</description>
