@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -20,11 +21,12 @@ public class Order {
     private User user;
 
     @Column(nullable = false)
-    private OrderType Ordertype;
+    private OrderType orderType;
 
     @Column(nullable = false)
     private BigDecimal price;
 
+    @Column(nullable = false)
     private LocalDate timestamp = LocalDate.now();
 
     @Column(nullable = false)
@@ -32,6 +34,4 @@ public class Order {
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private OrderItem orderItem;
-
-
 }

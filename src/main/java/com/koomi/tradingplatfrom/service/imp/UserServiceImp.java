@@ -48,7 +48,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User findUserById(Long id) {
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userRepository.findById(String.valueOf(id));
         if(user.isEmpty()){
             throw new UserNotFoundException("User not found");
         }

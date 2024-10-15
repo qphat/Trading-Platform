@@ -75,7 +75,7 @@ public class WalletServiceImp implements WalletService {
     @Override
     public Wallet payOderPayment(Order order, User user) {
         Wallet wallet = getUserWallet(user);
-        if(order.getOrdertype().equals(OrderType.BUY)) {
+        if(order.getOrderType().equals(OrderType.BUY)) {
             BigDecimal newBalance = wallet.getBalance().subtract(order.getPrice());
             if(newBalance.compareTo(order.getPrice()) < 0) {
                 throw new WalletException("Insuffecient funds for this transaction");

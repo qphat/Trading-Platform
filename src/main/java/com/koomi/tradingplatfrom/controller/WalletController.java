@@ -4,6 +4,7 @@ import com.koomi.tradingplatfrom.model.entity.Order;
 import com.koomi.tradingplatfrom.model.entity.User;
 import com.koomi.tradingplatfrom.model.entity.Wallet;
 import com.koomi.tradingplatfrom.model.entity.WalletTransaction;
+import com.koomi.tradingplatfrom.service.OrderService;
 import com.koomi.tradingplatfrom.service.UserService;
 import com.koomi.tradingplatfrom.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class WalletController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("api/wallet")
     public ResponseEntity<Wallet> getUserWallet(
@@ -45,18 +49,18 @@ public class WalletController {
         return new ResponseEntity<>(wallet, HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("api/wallet/order/{orderId}/payment")
-    public ResponseEntity<Wallet> payOrderPayment(
-            @RequestHeader("Authorization") String jwt,
-            @PathVariable Long orderId){
-
-        User sender = userService.findUserProfileByJwt(jwt);
-        Order order = orderSetvice.findOrderById(orderId);
-
-        Wallet wallet = walletService.payOderPayment(order, sender);
-
-        return new ResponseEntity<>(wallet, HttpStatus.ACCEPTED);
-    }
+//    @PutMapping("api/wallet/order/{orderId}/payment")
+//    public ResponseEntity<Wallet> payOrderPayment(
+//            @RequestHeader("Authorization") String jwt,
+//            @PathVariable Long orderId){
+//
+//        User sender = userService.findUserProfileByJwt(jwt);
+//        Order order = orderService.getAllOrderOfUser(orderId);
+//
+//        Wallet wallet = walletService.payOderPayment(order, sender);
+//
+//        return new ResponseEntity<>(wallet, HttpStatus.ACCEPTED);
+//    }
 
 
 
