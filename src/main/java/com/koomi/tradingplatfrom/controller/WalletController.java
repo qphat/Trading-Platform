@@ -1,12 +1,12 @@
 package com.koomi.tradingplatfrom.controller;
 
-import com.koomi.tradingplatfrom.model.entity.Order;
-import com.koomi.tradingplatfrom.model.entity.User;
-import com.koomi.tradingplatfrom.model.entity.Wallet;
-import com.koomi.tradingplatfrom.model.entity.WalletTransaction;
+import com.koomi.tradingplatfrom.model.entity.*;
+import com.koomi.tradingplatfrom.response.PaymentResponse;
 import com.koomi.tradingplatfrom.service.OrderService;
+import com.koomi.tradingplatfrom.service.PaymentService;
 import com.koomi.tradingplatfrom.service.UserService;
 import com.koomi.tradingplatfrom.service.WalletService;
+import com.razorpay.RazorpayException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +24,10 @@ public class WalletController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private PaymentService paymentService;
+
 
     @GetMapping("api/wallet")
     public ResponseEntity<Wallet> getUserWallet(
@@ -49,23 +53,26 @@ public class WalletController {
         return new ResponseEntity<>(wallet, HttpStatus.ACCEPTED);
     }
 
-//    @PutMapping("api/wallet/order/{orderId}/payment")
-//    public ResponseEntity<Wallet> payOrderPayment(
-//            @RequestHeader("Authorization") String jwt,
-//            @PathVariable Long orderId){
-//
-//        User sender = userService.findUserProfileByJwt(jwt);
-//        Order order = orderService.getAllOrderOfUser(orderId);
-//
-//        Wallet wallet = walletService.payOderPayment(order, sender);
-//
-//        return new ResponseEntity<>(wallet, HttpStatus.ACCEPTED);
-//    }
+    @PutMapping("api/wallet/order/{orderId}/payment")
+    public ResponseEntity<Wallet> addBalanceToWallet(
+            @RequestHeader("Authorization") String jwt,
+            @RequestParam(name = "orderId") Long orderId,
+            @RequestParam(name = "payment_id") String paymentId) throws RazorpayException {
 
+        User sender = userService.findUserProfileByJwt(jwt);
 
+        Wallet wallet = walletService.getUserWallet(sender);
 
+        PaymentOrder paymentOrder = paymentService.getPaymentOrderById(orderId);
 
+        Boolean status = paymentService.ProcessPayment(paymentOrder, paymentId);
 
+       if(status) {
+           wallet = walletService.addBalanceToWallet(wallet, paymentOrder.getAount());
 
+       }
+
+        return new ResponseEntity<>(wallet, HttpStatus.ACCEPTED);
+    }
 
 }

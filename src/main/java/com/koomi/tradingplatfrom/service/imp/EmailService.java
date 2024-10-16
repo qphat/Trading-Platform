@@ -1,4 +1,4 @@
-package com.koomi.tradingplatfrom.service;
+package com.koomi.tradingplatfrom.service.imp;
 
 import com.koomi.tradingplatfrom.exception.MailSendingException;
 import jakarta.mail.MessagingException;
@@ -15,7 +15,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendOtp(String email, String otp) {
+    public void sendOtp(String email, String otp)  {
         try {
             String subject = "Your OTP Code";
             String text = "Your One-Time Password (OTP) is: " + otp;

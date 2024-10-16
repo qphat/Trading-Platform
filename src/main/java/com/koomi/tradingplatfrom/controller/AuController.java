@@ -10,7 +10,7 @@ import com.koomi.tradingplatfrom.model.entity.TwoFactorOTP;
 import com.koomi.tradingplatfrom.model.entity.User;
 import com.koomi.tradingplatfrom.repository.UserRepository;
 import com.koomi.tradingplatfrom.response.AuthResponse;
-import com.koomi.tradingplatfrom.service.EmailService;
+import com.koomi.tradingplatfrom.service.imp.EmailService;
 import com.koomi.tradingplatfrom.service.TwoFactorOtpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

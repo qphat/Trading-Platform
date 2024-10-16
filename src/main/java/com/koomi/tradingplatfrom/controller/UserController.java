@@ -10,7 +10,7 @@ import com.koomi.tradingplatfrom.model.entity.VerificationCode;
 import com.koomi.tradingplatfrom.response.ApiResponse;
 import com.koomi.tradingplatfrom.response.AuthResponse;
 import com.koomi.tradingplatfrom.request.ResetPasswordRequest;
-import com.koomi.tradingplatfrom.service.EmailService;
+import com.koomi.tradingplatfrom.service.imp.EmailService;
 import com.koomi.tradingplatfrom.service.ForgotPasswordService;
 import com.koomi.tradingplatfrom.service.UserService;
 import com.koomi.tradingplatfrom.service.VerificationCodeService;

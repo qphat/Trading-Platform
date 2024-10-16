@@ -112,6 +112,31 @@
             <version>10.5.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.stripe/stripe-java -->
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>25.4.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.razorpay/razorpay-java -->
+        <dependency>
+            <groupId>com.razorpay</groupId>
+            <artifactId>razorpay-java</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.paypal.sdk/rest-api-sdk -->
+        <dependency>
+            <groupId>com.paypal.sdk</groupId>
+            <artifactId>rest-api-sdk</artifactId>
+            <version>1.13.1</version>
+        </dependency>
+
+
+
+
+
 
 
     </dependencies>

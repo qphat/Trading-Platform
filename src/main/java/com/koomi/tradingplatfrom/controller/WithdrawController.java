@@ -7,7 +7,6 @@ import com.koomi.tradingplatfrom.model.entity.WalletTransaction;
 import com.koomi.tradingplatfrom.model.entity.Withdraw;
 import com.koomi.tradingplatfrom.service.UserService;
 import com.koomi.tradingplatfrom.service.WalletService;
-import com.koomi.tradingplatfrom.service.WalletTransactionService;
 import com.koomi.tradingplatfrom.service.WithdrawService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,12 +39,6 @@ public class WithdrawController {
         Withdraw withdraw = withdrawService.requestWithdraw(amount, user);
         walletService.addBalanceToWallet(userWallet, -withdraw.getAmount());
 
-        WalletTransaction walletTransaction = WalletTransactionService.createWalletTransaction(
-                userWallet,
-                WalletTransactionType.WITHDRAW,null,
-                "bank account withdraw",
-                withdraw.getAmount(), "Withdraw request"
-        );
 
         return new ResponseEntity<>(withdraw, HttpStatus.CREATED);
 
